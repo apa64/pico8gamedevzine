@@ -4,15 +4,25 @@ __lua__
 -- game loop example / gamedev with pico-8 #1 
 function _init()
     make_player()
+    show_x_pressed = 0
 end
 
 function _update()
     move_player()
+    if (btnp(❎)) then
+    sfx(1,1)
+    show_x_pressed = 10
+    end
+    if (show_x_pressed < 0) show_x_pressed = 0
 end
 
 function _draw()
     cls(3)
     draw_player()
+    if (show_x_pressed > 0) then
+        print("hei♥",50,2,show_x_pressed)
+        show_x_pressed -= 1
+    end
 end
 
 function make_player()
@@ -25,24 +35,24 @@ end
 function move_player()
     if (btn(0)) px -= 1 -- left
     if (btn(1)) px += 1 -- right
-    if (btn(2)) py -= 1  -- up
+    if (btn(2)) py -= 1 -- up
     if (btn(3)) py += 1 -- down
     -- limits, bounce back
     if (px < 0) then
-     px = 1
-     sfx(0)
+        px = 1
+        sfx(0,0)
     end
     if (py < 0) then
-      py = 1
-      sfx(0)
+        py = 1
+        sfx(0,0)
     end
     if (px + pwidth > 127) then
-      px -= 2
-      sfx(0)
+        px -= 2
+        sfx(0,0)
     end
     if (py + pwidth > 127) then
-    	py -= 2
-    	sfx(0)
+        py -= 2
+        sfx(0,0)
     end
 end
 
@@ -60,4 +70,5 @@ __gfx__
 000000000500a0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 00000000005005500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 __sfx__
-00040000110500d050120500b03007010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00040000110500d050120500b0300702005000060000c00011000170001d0001d0001c00019000180001400008000000000000000000000000000000000000000000000000000000000000000000000000000000
+00070000100500e01007050070100d0500d0101d0501d040280102804022010220501a0101a05014010140401001010040100101304013010140501305017050170501705018050190501b0501e050290502f050
