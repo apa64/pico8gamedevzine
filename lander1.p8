@@ -2,7 +2,7 @@ pico-8 cartridge // http://www.pico-8.com
 version 27
 __lua__
 -- cave diver / gamedev with pico-8 #1
--- minor modifications by apa
+-- minor modifications by apa64
 
 -- consts
 left,right,up,down,fire1,fire2=0,1,2,3,4,5
